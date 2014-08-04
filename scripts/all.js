@@ -103,6 +103,7 @@ function configureMasonry() {
   $photoSlider.masonry({
     itemSelector: '.js-photoWrapper',
     gutter: 20,
+    transitionDuration: 0,
     columnWidth: 350,
     isFitWidth: true
   });
