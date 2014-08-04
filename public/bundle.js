@@ -2240,6 +2240,7 @@ if ( typeof define === 'function' && define.amd ) {
 
 },{}],5:[function(require,module,exports){
 var imagesLoaded = require('imagesloaded');
+
 var _ = require('underscore');
 
 var onScroll = _.throttle(function() {
@@ -2274,6 +2275,7 @@ function configureToolbar() {
   $('.js-everyday-chiswick').click(function(event) {
     event.preventDefault();
     clearMasonry();
+    configureMasonry();
     configureEverydayChiswick();
     $navLinks.removeClass('active');
     $(event.currentTarget).addClass('active');
@@ -2282,6 +2284,7 @@ function configureToolbar() {
   $('.js-a-particular-pick').click(function(event) {
     event.preventDefault();
     clearMasonry();
+    configureMasonry();
     configureAParticularPick();
     $navLinks.removeClass('active');
     $(event.currentTarget).addClass('active');
@@ -2290,11 +2293,8 @@ function configureToolbar() {
 
 function clearMasonry() {
   var $photoWrapper = $('.js-photoSlider .photoWrapper');
-  $photoWrapper.detach();
-  _($photoWrapper).each(function(photoWrapper) {
-    $('.js-photoSlider').masonry('remove', photoWrapper);
-  });
-
+  $photoWrapper.remove();
+  $('.js-photoSlider').masonry('destroy');
 }
 
 function configureEverydayChiswick() {
@@ -2338,9 +2338,6 @@ function configureImages(projectFolderName, photosCount) {
 
 function configureMasonry() {
   var $photoSlider = $('.js-photoSlider');
-
-  var imgLoaded = imagesLoaded('.js-photoSlider');
-
   $photoSlider.masonry({
     itemSelector: '.js-photoWrapper',
     gutter: 20,
@@ -2401,9 +2398,6 @@ function setPhotoExpoSizeClass($photoExpoImg, $photoExpo) {
   var height = $photoExpoImg.height();
 
   var delta = height - width;
-
-  console.log('calc:', height / 2);
-  console.log('delta', delta);
 
   if (width > height) {
     $photoExpo.switchClass('is-tall is-really-tall', 'is-wider', 0);
