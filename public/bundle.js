@@ -2313,11 +2313,15 @@ function configureImages(projectFolderName, photosCount) {
 
     var $image = $('<img src="' + imageSrc + '">');
 
-    $photoWrapper.append($image);
+    $image.one('load', function() {
+      $photoWrapper.append($image);
 
-    $('.js-photoSlider').append($photoWrapper);
+      $('.js-photoSlider').append($photoWrapper);
 
-    $('.js-photoSlider').masonry('appended', $photoWrapper);
+      $('.js-photoSlider').masonry('appended', $photoWrapper);
+      $('.js-photoSlider').masonry('layout');
+    });
+
 
   });
 }
@@ -2333,14 +2337,6 @@ function configureMasonry() {
     columnWidth: 350,
     isFitWidth: true
   });
-
-  masonryLayoutIntervalId = setInterval(function() {
-    $photoSlider.masonry('layout');
-  }, 700);
-}
-
-function loadEveryDayChiswick() {
-  $('')
 }
 
 

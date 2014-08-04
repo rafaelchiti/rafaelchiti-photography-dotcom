@@ -5,7 +5,7 @@
 
 /* line 297 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/node_modules/stylus/lib/functions/index.styl */
 
-/* line 15 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/node_modules/nib/lib/nib/index.styl */
+/* line 14 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/node_modules/nib/lib/nib/index.styl */
 
 /* line 14 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/node_modules/nib/lib/nib/index.styl */
 
@@ -25,7 +25,7 @@
 
 /* line 197 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/node_modules/nib/lib/nib/flex.styl */
 
-/* line 15 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/node_modules/nib/lib/nib/gradients.styl */
+/* line 92 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/node_modules/nib/lib/nib/gradients.styl */
 
 /* line 92 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/node_modules/nib/lib/nib/gradients.styl */
 
@@ -53,7 +53,7 @@
 
 /* line 79 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/node_modules/nib/lib/nib/reset.styl */
 
-/* line 15 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/node_modules/nib/lib/nib/text/index.styl */
+/* line 6 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/node_modules/nib/lib/nib/text/index.styl */
 
 /* line 6 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/node_modules/nib/lib/nib/text/index.styl */
 
@@ -168,9 +168,9 @@ body {
   margin: 0;
 }
 
-/* line 26 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/layout.styl */
+/* line 3 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/layout.styl */
 
-/* line 26 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/header.styl */
+/* line 3 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/header.styl */
 
 /* line 1 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/header.styl */
 header.pageHeader {
@@ -210,9 +210,9 @@ body.is-page-scrolled header.pageHeader {
   box-shadow: 0px 0px 10px 1px rgba(31,31,33,0.3);
 }
 
-/* line 38 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/header.styl */
+/* line 25 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/header.styl */
 
-/* line 38 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/projects_navigation.styl */
+/* line 25 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/projects_navigation.styl */
 
 /* line 1 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/projects_navigation.styl */
 .projectsNavigation {
@@ -310,9 +310,9 @@ body.is-page-scrolled header.pageHeader {
   filter: alpha(opacity=10);
 }
 
-/* line 36 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/photo_slider.styl */
+/* line 27 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/photo_slider.styl */
 
-/* line 36 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/photo_expo.styl */
+/* line 27 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/photo_expo.styl */
 
 /* line 1 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/photo_expo.styl */
 .photoExpoWrapper {
@@ -375,9 +375,9 @@ body.is-page-scrolled header.pageHeader {
   filter: alpha(opacity=30);
 }
 
-/* line 15 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/photo_expo.styl */
+/* line 36 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/photo_expo.styl */
 
-/* line 15 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/background_blocker.styl */
+/* line 36 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/background_blocker.styl */
 
 /* line 1 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/background_blocker.styl */
 .backgroundBlocker {
