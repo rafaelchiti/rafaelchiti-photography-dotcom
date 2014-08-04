@@ -2290,7 +2290,7 @@ function configureToolbar() {
 
 function clearMasonry() {
   var $photoWrapper = $('.js-photoSlider .photoWrapper');
-
+  $photoWrapper.detach();
   _($photoWrapper).each(function(photoWrapper) {
     $('.js-photoSlider').masonry('remove', photoWrapper);
   });
@@ -2306,20 +2306,30 @@ function configureAParticularPick() {
 }
 
 function configureImages(projectFolderName, photosCount) {
+  $photoSlider = $('.js-photoSlider');
+  var identifier = $photoSlider.data('identifier');
+  if (!identifier) {
+    identifier = 1;
+  } else {
+    identifier++;
+  }
+
+  $photoSlider.data('identifier', identifier);
+
   _(photosCount).times(function(index) {
     var imageSrc = 'public/photos/' + projectFolderName + '/photo-' + (index + 1) + '.jpg';
 
     var $photoWrapper = $('<div class="photoWrapper js-photoWrapper">');
 
     var $image = $('<img src="' + imageSrc + '">');
+    $photoWrapper.append($image);
 
     $image.one('load', function() {
-      $photoWrapper.append($image);
-
-      $('.js-photoSlider').append($photoWrapper);
-
-      $('.js-photoSlider').masonry('appended', $photoWrapper);
-      $('.js-photoSlider').masonry('layout');
+      if ($photoSlider.data('identifier') == identifier) {
+        $('.js-photoSlider').append($photoWrapper);
+        $('.js-photoSlider').masonry('appended', $photoWrapper);
+        $('.js-photoSlider').masonry('layout');
+      }
     });
 
 
