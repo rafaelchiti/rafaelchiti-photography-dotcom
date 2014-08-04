@@ -1,21 +1,35 @@
-.photoExpo
+.photoExpoWrapper
   position absolute
+  top 0
   margin-bottom 100px
-  top 60px
-  width 75%
-  left 12%
-  padding 10px
-  background-color white
-  box-shadow(0px 0px 10px 1px rgba(app-black, .2))
   z-index photoExpo-zi
   display none
+  height 100%
+  width 100%
+  box-sizing(border-box)
 
-  img
-    width 100%
-    transition opacity .5s
+  .photoExpo
+    position relative
+    margin auto
+    padding 10px
+    background-color white
+    box-shadow(0px 0px 10px 1px rgba(app-black, .2))
 
-  &.is-loading
-    background-color app-light-gray
+    &.is-tall
+      width 40%
+
+    &.is-really-tall
+      width 35%
+
+    &.is-wider
+      width 60%
 
     img
-      opacity .3
+      width 100%
+      transition opacity .5s
+
+    &.is-loading
+      background-color app-light-gray
+
+      img
+        opacity .3

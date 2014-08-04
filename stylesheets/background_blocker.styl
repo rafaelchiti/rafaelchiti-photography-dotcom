@@ -1,6 +1,6 @@
 .backgroundBlocker
   background-color white
-  opacity .5
+  opacity .95
   top 0
   left 0
   position fixed
@@ -8,3 +8,7 @@
   width 100%
   height 100%
   display none
+  transition opacity .5s
+
+  &.has-scrolled-while-exposing
+    opacity .6
