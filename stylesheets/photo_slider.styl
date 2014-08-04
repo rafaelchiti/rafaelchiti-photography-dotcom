@@ -1,0 +1,26 @@
+.photoSlider
+  margin-left 20px
+  margin-top 42px
+  padding 20px
+  box-sizing(border-box)
+  clearfix()
+
+  .photoWrapper
+    cursor pointer
+    transition background .5s
+    width 350px
+    margin-bottom 20px
+    height auto
+
+
+    img
+      width 100%
+      height auto
+      display block
+      transition opacity .5s
+
+    &.is-loading
+      background-color app-light-gray
+
+      img
+        opacity .1

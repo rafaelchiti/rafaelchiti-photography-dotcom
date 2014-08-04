@@ -1,0 +1,35 @@
+{
+  "name": "rafaelchiti-photography-dotcom",
+  "version": "0.0.0",
+  "description": "Photography Website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rafaelchiti/rafaelchiti-photography-dotcom.git"
+  },
+  "author": "Rafael Chiti",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rafaelchiti/rafaelchiti-photography-dotcom/issues"
+  },
+  "homepage": "https://github.com/rafaelchiti/rafaelchiti-photography-dotcom",
+  "devDependencies": {
+    "browserify": "~4.1.11",
+    "watchify": "~0.10.2",
+    "gulp": "~3.8.2",
+    "nib": "~1.0.3",
+    "gulp-stylus": "~1.0.2",
+    "stylus": "~0.46.3",
+    "gulp-rename": "~1.2.0",
+    "glob": "~4.0.2"
+  },
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "underscore": "~1.6.0",
+    "masonry.js": "~3.1.5",
+    "imagesloaded": "~3.1.8"
+  }
+}

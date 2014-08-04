@@ -1,0 +1,37 @@
+header.pageHeader
+  position fixed
+  width 100%
+  z-index header-zi
+  background white
+  padding-top 5px
+  padding-bottom 10px
+  padding-left 40px
+  top 0px
+  transition all .8s
+  // border-bottom: 1px solid rgba(app-gray)
+
+  h1
+    margin 0
+    margin auto
+    display block
+    text-align center
+    color app-dark-dark-gray
+    font-size 30px
+    transition all .8s
+    font-weight lighter
+
+  .header-authorContainer
+    // text-align center
+    display inline-block
+    margin-right 50px
+
+    .authorContainer-name
+      color app-dark-red
+      font-size 25px
+      font-weight bold
+      // margin-left 4px
+
+body.is-page-scrolled
+  header.pageHeader
+    // opacity 0
+    box-shadow(0px 0px 10px 1px rgba(app-black, .3))
