@@ -2239,9 +2239,19 @@ if ( typeof define === 'function' && define.amd ) {
 }).call(this);
 
 },{}],5:[function(require,module,exports){
-var imagesLoaded = require('imagesloaded');
-
 var _ = require('underscore');
+var photosContainer = require('./photos_container');
+var toolbar = require('./toolbar');
+
+
+$(document).ready(function() {
+  photosContainer.initialize();
+  toolbar.configure(photosContainer.showSet);
+});
+
+
+
+// Scrolling behaviour
 
 var onScroll = _.throttle(function() {
   if ($(document).scrollTop() > 50) {
@@ -2249,96 +2259,57 @@ var onScroll = _.throttle(function() {
   } else {
     $('body').removeClass('is-page-scrolled');
   }
-
-  if ($('body').hasClass('is-exposing-photo')) {
-    $('.js-backgroundBlocker').addClass('has-scrolled-while-exposing');
-  }
 }, 300, this);
 
 $(window).scroll(onScroll);
 
-var $navLinks;
+},{"./photos_container":6,"./toolbar":8,"underscore":4}],6:[function(require,module,exports){
+var photos = require('./photos_information');
+var imagesLoaded = require('imagesloaded');
+var _ = require('underscore');
 
-$(document).ready(function() {
-  $navLinks = $('.js-projectsNavigation a');
 
-  configureToolbar();
+var _elements = {
+  $photoExpo: null,
+  $photoExpoWrapper: null,
+  $photoExpoImg: null,
+  $backgroundBlocker: null,
+  $photoSlider: null,
+  $body: null,
+  $photoExpoTitle: null,
+  $photoExpoDescription: null
+};
 
-  configureMasonry();
+var photosContainer = {
+  initialize: function() {
+    _cacheElements();
+    _configureMasonry();
+    _configureExpoScrollingBehaviour();
 
-  configurePhotoExpo();
+    this.showSet('set1');
+  },
 
-  $('.js-a-particular-pick').click();
-});
-
-function configureToolbar() {
-  $('.js-everyday-chiswick').click(function(event) {
-    event.preventDefault();
-    clearMasonry();
-    configureMasonry();
-    configureEverydayChiswick();
-    $navLinks.removeClass('active');
-    $(event.currentTarget).addClass('active');
-  });
-
-  $('.js-a-particular-pick').click(function(event) {
-    event.preventDefault();
-    clearMasonry();
-    configureMasonry();
-    configureAParticularPick();
-    $navLinks.removeClass('active');
-    $(event.currentTarget).addClass('active');
-  });
-}
-
-function clearMasonry() {
-  var $photoWrapper = $('.js-photoSlider .photoWrapper');
-  $photoWrapper.remove();
-  $('.js-photoSlider').masonry('destroy');
-}
-
-function configureEverydayChiswick() {
-  configureImages('everyday_chiswick', 8);
-}
-
-function configureAParticularPick() {
-  configureImages('a_particular_pick', 26);
-}
-
-function configureImages(projectFolderName, photosCount) {
-  $photoSlider = $('.js-photoSlider');
-  var identifier = $photoSlider.data('identifier');
-  if (!identifier) {
-    identifier = 1;
-  } else {
-    identifier++;
+  showSet: function(set) {
+    _clearMasonry();
+    _configureMasonry();
+    _configureImagesFor(set);
   }
-
-  $photoSlider.data('identifier', identifier);
-
-  _(photosCount).times(function(index) {
-    var imageSrc = 'public/photos/' + projectFolderName + '/photo-' + (index + 1) + '.jpg';
-
-    var $photoWrapper = $('<div class="photoWrapper js-photoWrapper">');
-
-    var $image = $('<img src="' + imageSrc + '">');
-    $photoWrapper.append($image);
-
-    $image.one('load', function() {
-      if ($photoSlider.data('identifier') == identifier) {
-        $('.js-photoSlider').append($photoWrapper);
-        $('.js-photoSlider').masonry('appended', $photoWrapper);
-        $('.js-photoSlider').masonry('layout');
-      }
-    });
-
-
-  });
 }
 
-function configureMasonry() {
-  var $photoSlider = $('.js-photoSlider');
-  $photoSlider.masonry({
+function _cacheElements() {
+  _elements.$body = $('body');
+  _elements.$photoExpo = $('.js-photoExpo');
+  _elements.$photoExpoTitle = $('.js-photoExpo-title');
+  _elements.$photoExpoDescription = $('.js-photoExpo-description');
+  _elements.$photoExpoWrapper = $('.js-photoExpoWrapper');
+  _elements.$photoExpoImg = $('.js-photoExpo img');
+  _elements.$backgroundBlocker = $('.js-backgroundBlocker');
+  _elements.$photoSlider = $('.js-photoSlider');
+};
+
+
+function _configureMasonry() {
+  _elements.$photoSlider.masonry({
     itemSelector: '.js-photoWrapper',
     gutter: 20,
     transitionDuration: 0,
@@ -2347,69 +2318,185 @@ function configureMasonry() {
   });
 }
 
-
-function configurePhotoExpo() {
-  var $photoExpo = $('.js-photoExpo');
-  var $photoExpoWrapper = $('.js-photoExpoWrapper');
-  var $photoExpoImg = $('.js-photoExpo img');
-  var $backgroundBlocker = $('.js-backgroundBlocker');
-
-  $('body').on('click', '.js-photoSlider .js-photoWrapper', function(event) {
-
-    $('.js-backgroundBlocker').show();
-
-    $('body').addClass('is-exposing-photo');
-
-    var imgLoaded = imagesLoaded('.js-photoExpo');
-
-    imgLoaded.on('done', function(instance, image) {
-      $photoExpo.removeClass('is-loading');
-      imgLoaded.off();
-
-      setPhotoExpoSizeClass($photoExpoImg, $photoExpo);
-    });
-
-    $photoExpoWrapper.css('top', $(document).scrollTop() + 30);
-
-    $photoExpo.addClass('is-loading');
-    $photoExpoWrapper.fadeIn();
-
-    var src = $(event.currentTarget).children('img').attr('src');
-
-    $photoExpoImg.attr('src', src);
+function _clearMasonry() {
+  var $photoWrapper = $('.js-photoSlider .photoWrapper');
+  $photoWrapper.remove();
+  _elements.$photoSlider.masonry('destroy');
+}
 
 
-  });
-
-  function hidePhotoExpo() {
-    $backgroundBlocker.hide();
-    $photoExpoWrapper.hide();
-    $('body').removeClass('is-exposing-photo');
-    $backgroundBlocker.removeClass('has-scrolled-while-exposing');
+function _configureImagesFor(set) {
+  var identifier = _elements.$photoSlider.data('identifier');
+  if (!identifier) {
+    identifier = 1;
+  } else {
+    identifier++;
   }
 
-  $photoExpoWrapper.click(hidePhotoExpo);
-  $backgroundBlocker.click(hidePhotoExpo);
+  _elements.$photoSlider.data('identifier', identifier);
+
+  var photosSet = _(photos).where({'set': set});
+
+  _(photosSet).each(function(photo) {
+
+    var $photo = _photoHTML(photo);
+    var $img = $photo.find('img');
+
+    $photo.hide();
+    _elements.$photoSlider.append($photo);
+    _elements.$photoSlider.masonry('appended', $photo);
+
+    $img.one('load', function() {
+      if (_elements.$photoSlider.data('identifier') == identifier) {
+        _elements.$photoSlider.masonry('layout');
+        $photo.fadeIn();
+      }
+    });
+
+    $photo.on('click',  photo, _configurePhotoExpo.bind(this));
+
+  });
+}
+
+
+function _photoHTML(photo) {
+  var $photoWrapper = $('<div class="photoWrapper js-photoWrapper">');
+  $photoWrapper.data('title', photo.title);
+  $photoWrapper.data('description', photo.description);
+
+  var $image = $('<img src="' + photo.location + '">');
+
+  $photoWrapper.append($image);
+
+  return $photoWrapper;
+}
+
+
+function _configurePhotoExpo(event) {
+  var photoData = event.data;
+
+  _elements.$backgroundBlocker.show();
+
+  _elements.$body.addClass('is-exposing-photo');
+
+  var imgLoaded = imagesLoaded('.js-photoExpo');
+
+  imgLoaded.on('done', function(instance, image) {
+    _elements.$photoExpo.removeClass('is-loading');
+    imgLoaded.off();
+
+    _setPhotoExpoSizeClass();
+  });
+
+  _elements.$photoExpoWrapper.css('top', $(document).scrollTop() + 70);
+
+  _elements.$photoExpo.addClass('is-loading');
+  _elements.$photoExpoWrapper.fadeIn();
+
+  _elements.$photoExpoImg.attr('src', photoData.location);
+
+  _elements.$photoExpoTitle.text(photoData.title);
+  _elements.$photoExpoDescription.text(photoData.description);
+
+  function hidePhotoExpo() {
+    _elements.$backgroundBlocker.hide();
+    _elements.$photoExpoWrapper.hide();
+    _elements.$body.removeClass('is-exposing-photo');
+    _elements.$backgroundBlocker.removeClass('has-scrolled-while-exposing');
+  }
+
+  _elements.$photoExpoWrapper.click(hidePhotoExpo);
+  _elements.$backgroundBlocker.click(hidePhotoExpo);
 
 }
 
-function setPhotoExpoSizeClass($photoExpoImg, $photoExpo) {
-  var width = $photoExpoImg.width();
-  var height = $photoExpoImg.height();
+
+function _setPhotoExpoSizeClass() {
+  var width = _elements.$photoExpoImg.width();
+  var height = _elements.$photoExpoImg.height();
 
   var delta = height - width;
 
   if (width > height) {
-    $photoExpo.switchClass('is-tall is-really-tall', 'is-wider', 0);
+    _elements.$photoExpo.switchClass('is-tall is-really-tall', 'is-wider', 0);
   } else if (height / 2 > delta && width !== height) {
-    $photoExpo.switchClass('is-tall is-wider', 'is-really-tall', 0);
+    _elements.$photoExpo.switchClass('is-tall is-wider', 'is-really-tall', 0);
   } else {
-    $photoExpo.switchClass('is-really-tall is-wider', 'is-tall', 0);
+    _elements.$photoExpo.switchClass('is-really-tall is-wider', 'is-tall', 0);
   }
 }
 
+function _configureExpoScrollingBehaviour() {
+  var onScroll = _.throttle(function() {
+    if (_elements.$body.hasClass('is-exposing-photo')) {
+      _elements.$backgroundBlocker.addClass('has-scrolled-while-exposing');
+    }
+  }, 300, this);
+
+  $(window).scroll(onScroll);
+}
+
+module.exports = photosContainer;
+
+},{"./photos_information":7,"imagesloaded":1,"underscore":4}],7:[function(require,module,exports){
+var basePath = 'public/photos/';
+var _ = require('underscore');
+
+var lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis facilisis est, vitae varius arcu. Vivamus sodales vestibulum metus nec hendrerit. Integer tellus sem, suscipit eget ultrices id, fringilla quis nibh. Aliquam ac adipiscing enim.'
+
+function photo(set, folder, index) {
+  return {
+    location: basePath + folder + '/' + (index + 1) + '.jpg',
+    set: set
+  };
+}
+
+function addPhotos(count, set, folder) {
+  _(count).times(function(index) {
+    photos.push(photo(set, folder, index));
+  }, this);
+}
+
+var photos = [];
+
+
+// Low contrast
+addPhotos(11, 'set1', 'low_contrast');
+
+// Colorful Normal
+addPhotos(6, 'set1', 'colorful_normal');
+
+// Subreal Vivid
+addPhotos(6, 'set1', 'subreal_vivid');
+
+// BW
+addPhotos(8, 'set1', 'bw');
 
 
 
 
-},{"imagesloaded":1,"underscore":4}]},{},[5])
+module.exports = photos;
+},{"underscore":4}],8:[function(require,module,exports){
+var $navLinks;
+
+function configureToolbar(showSetCallback) {
+
+  var $navLinks = $('.js-projectsNavigation a');
+
+  $('.js-set-1').click(function(event) {
+    event.preventDefault();
+    showSetCallback('set1');
+    $navLinks.removeClass('active');
+    $(event.currentTarget).addClass('active');
+  });
+
+  $('.js-set-2').click(function(event) {
+    event.preventDefault();
+    showSetCallback('set2');
+    $navLinks.removeClass('active');
+    $(event.currentTarget).addClass('active');
+  });
+}
+
+module.exports.configure = configureToolbar;
+},{}]},{},[5])
