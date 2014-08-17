@@ -5,7 +5,7 @@
 
 /* line 297 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/node_modules/stylus/lib/functions/index.styl */
 
-/* line 14 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/node_modules/nib/lib/nib/index.styl */
+/* line 26 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/node_modules/nib/lib/nib/index.styl */
 
 /* line 14 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/node_modules/nib/lib/nib/index.styl */
 
@@ -25,7 +25,7 @@
 
 /* line 197 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/node_modules/nib/lib/nib/flex.styl */
 
-/* line 92 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/node_modules/nib/lib/nib/gradients.styl */
+/* line 26 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/node_modules/nib/lib/nib/gradients.styl */
 
 /* line 92 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/node_modules/nib/lib/nib/gradients.styl */
 
@@ -53,7 +53,7 @@
 
 /* line 79 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/node_modules/nib/lib/nib/reset.styl */
 
-/* line 6 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/node_modules/nib/lib/nib/text/index.styl */
+/* line 26 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/node_modules/nib/lib/nib/text/index.styl */
 
 /* line 6 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/node_modules/nib/lib/nib/text/index.styl */
 
@@ -246,9 +246,9 @@ body.is-page-scrolled header.pageHeader {
   font-weight: bold;
 }
 
-/* line 18 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/projects_navigation.styl */
+/* line 26 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/projects_navigation.styl */
 
-/* line 18 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/photo_slider.styl */
+/* line 26 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/photo_slider.styl */
 
 /* line 1 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/photo_slider.styl */
 .photoSlider {
@@ -284,13 +284,6 @@ body.is-page-scrolled header.pageHeader {
   width: 350px;
   margin-bottom: 20px;
   height: auto;
-}
-
-/* line 16 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/photo_slider.styl */
-.photoSlider .photoWrapper img {
-  width: 100%;
-  height: auto;
-  display: block;
   -webkit-transition: opacity 0.5s;
   -moz-transition: opacity 0.5s;
   -o-transition: opacity 0.5s;
@@ -298,16 +291,25 @@ body.is-page-scrolled header.pageHeader {
   transition: opacity 0.5s;
 }
 
-/* line 22 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/photo_slider.styl */
-.photoSlider .photoWrapper.is-loading {
-  background-color: #f7f7f7;
+/* line 16 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/photo_slider.styl */
+.photoSlider .photoWrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
-/* line 25 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/photo_slider.styl */
+/* line 21 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/photo_slider.styl */
+.photoSlider .photoWrapper.is-loading {
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+}
+
+/* line 24 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/photo_slider.styl */
 .photoSlider .photoWrapper.is-loading img {
-  opacity: 0.1;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
-  filter: alpha(opacity=10);
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
 }
 
 /* line 27 : /Users/rafaelchiti/Documents/Development/Code/rafaelchiti-photography-dotcom/stylesheets/photo_slider.styl */

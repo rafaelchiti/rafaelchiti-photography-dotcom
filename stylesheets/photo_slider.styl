@@ -11,16 +11,15 @@
     width 350px
     margin-bottom 20px
     height auto
-
+    transition opacity .5s
 
     img
       width 100%
       height auto
       display block
-      transition opacity .5s
 
     &.is-loading
-      background-color app-light-gray
+      opacity 0
 
       img
-        opacity .1
+        opacity 0

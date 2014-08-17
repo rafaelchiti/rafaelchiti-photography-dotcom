@@ -2342,14 +2342,15 @@ function _configureImagesFor(set) {
     var $photo = _photoHTML(photo);
     var $img = $photo.find('img');
 
-    $photo.hide();
+    $photo.addClass('is-loading');
+
     _elements.$photoSlider.append($photo);
     _elements.$photoSlider.masonry('appended', $photo);
 
     $img.one('load', function() {
       if (_elements.$photoSlider.data('identifier') == identifier) {
         _elements.$photoSlider.masonry('layout');
-        $photo.fadeIn();
+        $photo.removeClass('is-loading');
       }
     });
 
