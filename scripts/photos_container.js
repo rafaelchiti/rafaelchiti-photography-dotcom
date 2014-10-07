@@ -2,7 +2,6 @@ var photos = require('./photos_information');
 var imagesLoaded = require('imagesloaded');
 var _ = require('underscore');
 
-
 var _elements = {
   $photoExpo: null,
   $photoExpoWrapper: null,
@@ -47,7 +46,7 @@ function _configureMasonry() {
     itemSelector: '.js-photoWrapper',
     gutter: 20,
     transitionDuration: 0,
-    columnWidth: 350,
+    columnWidth: 400,
     isFitWidth: true
   });
 }

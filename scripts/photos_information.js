@@ -19,19 +19,8 @@ function addPhotos(count, set, folder) {
 var photos = [];
 
 
-// Low contrast
-addPhotos(11, 'set1', 'low_contrast');
-
-// Colorful Normal
-addPhotos(6, 'set1', 'colorful_normal');
-
-// Subreal Vivid
-addPhotos(6, 'set1', 'subreal_vivid');
-
-// BW
-addPhotos(8, 'set1', 'bw');
-
-
+// Fine Art
+addPhotos(9, 'set1', 'fine_art');
 
 
 module.exports = photos;

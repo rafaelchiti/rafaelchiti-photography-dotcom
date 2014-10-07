@@ -9,7 +9,6 @@ $(document).ready(function() {
 });
 
 
-
 // Scrolling behaviour
 
 var onScroll = _.throttle(function() {
